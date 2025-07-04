@@ -12,13 +12,7 @@
         use_fake_hardware:=false
         mock_sensor_commands:=false
         include_ros2_control:=true
-        com_port:=/dev/ttyUSB0
-        gripper_speed_multiplier:=1.0
-        gripper_force_multiplier:=0.5
-        gripper_max_speed:=0.150
-        gripper_max_force:=235.0
-        gripper_closed_position:=0.7929">
-
+        com_port:=/dev/ttyUSB0">
 
         <!-- ros2 control include -->
         <xacro:include filename="$(find robotiq_description)/urdf/2f_85.ros2_control.xacro" />
@@ -32,12 +26,7 @@
                 isaac_joint_states="${isaac_joint_states}"
                 use_fake_hardware="${use_fake_hardware}"
                 mock_sensor_commands="${mock_sensor_commands}"
-                com_port="${com_port}"
-                gripper_speed_multiplier="${gripper_speed_multiplier}"
-                gripper_force_multiplier="${gripper_force_multiplier}"
-                gripper_max_speed="${gripper_max_speed}"
-                gripper_max_force="${gripper_max_force}"
-                gripper_closed_position="${gripper_closed_position}"/>
+                com_port="${com_port}"/>
         </xacro:if>
 
         <link name="${prefix}robotiq_85_base_link">
@@ -249,7 +238,7 @@
             <child link="${prefix}robotiq_85_left_knuckle_link" />
             <axis xyz="0 -1 0" />
             <origin xyz="0.03060114 0.0 0.05490452" rpy="0 0 0" />
-            <limit lower="0.0" upper="0.8" velocity="0.5" effort="50" />
+            <limit lower="0.0" upper="0.8" velocity="0.5" effort="5" />
         </joint>
 
         <joint name="${prefix}robotiq_85_right_knuckle_joint" type="revolute">
@@ -257,7 +246,7 @@
             <child link="${prefix}robotiq_85_right_knuckle_link" />
             <axis xyz="0 -1 0" />
             <origin xyz="-0.03060114 0.0 0.05490452" rpy="0 0 0" />
-            <limit lower="-0.8" upper="0.0" velocity="0.5" effort="50" />
+            <limit lower="-0.8" upper="0.0" velocity="0.5" effort="5" />
             <mimic joint="${prefix}robotiq_85_left_knuckle_joint" multiplier="-1" />
         </joint>
 
